@@ -5,11 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script
-      src="https://unpkg.com/petite-vue@0.4.1/dist/petite-vue.umd.js"
-      defer
-    ></script>
-    <script src="petite-vue.js" defer></script>
+    <!-- https://github.com/vuejs/petite-vue#manual-init -->
+    <script src="https://unpkg.com/petite-vue@0.4.1/dist/petite-vue.umd.js"></script>
 
     <title>petite-vue-no-build-tools</title>
   </head>
@@ -18,5 +15,29 @@
       <h1>{{message}}</h1>
       <div>Agora: {{now}}</div>
     </div>
+
+    <script>
+      // https://github.com/vuejs/petite-vue#manual-init
+      PetiteVue.createApp({
+        _clockInterval: null,
+        message: "Hello petite-vue",
+        dateNow: new Date(),
+
+        get now() {
+          return this.dateNow.toLocaleString();
+        },
+
+        mounted() {
+          this._clockInterval = setInterval(
+            () => (this.dateNow = new Date()),
+            1000
+          );
+        },
+
+        unmounted() {
+          clearInterval(this._clockInterval);
+        },
+      }).mount("#app");
+    </script>
   </body>
 </html>
