@@ -5,12 +5,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script type="module" src="lit.esm-browser.js" defer></script>
-
-    <title>Lit</title>
+    <title>Lit em ambiente não compilado</title>
   </head>
   <body>
     <simple-greeting></simple-greeting>
     <simple-clock></simple-clock>
+
+    <script type="module">
+      // https://lit.dev/docs/getting-started/#use-bundles
+
+      import {
+        LitElement,
+        html,
+        css,
+      } from "https://cdn.jsdelivr.net/gh/lit/dist@2.5.0/core/lit-core.min.js";
+
+      export class SimpleGreeting extends LitElement {
+        static properties = {
+          name: {},
+        };
+        // Define scoped styles right with your component, in plain CSS
+        static styles = css`
+          :host {
+            color: blue;
+          }
+        `;
+
+        constructor() {
+          super();
+          // Declare reactive properties
+          this.name = "World";
+        }
+
+        // Render the UI as a function of component state
+        render() {
+          return html`<h1>Hello, ${this.name}!</h1>`;
+        }
+      }
+
+      export class SimpleClock extends LitElement {
+        static properties = {
+          _now: { state: true },
+          _timerInterval: { state: true },
+        };
+
+        constructor() {
+          super();
+          this._now = new Date();
+          this._timerInterval = null;
+        }
+
+        connectedCallback() {
+          super.connectedCallback();
+          this._timerInterval = setInterval(
+            () => (this._now = new Date()),
+            1000
+          );
+        }
+
+        disconnectedCallback() {
+          super.disconnectedCallback();
+          clearInterval(this._timerInterval);
+        }
+
+        render() {
+          return html`<div>Agora: ${this._now.toLocaleString()}</div>`;
+        }
+      }
+
+      customElements.define("simple-clock", SimpleClock);
+      customElements.define("simple-greeting", SimpleGreeting);
+    </script>
   </body>
 </html>
