@@ -38,7 +38,7 @@
       main {
         margin: 0 auto;
         max-width: 800px;
-        padding: 100px 60px;
+        padding: 100px 16px;
       }
 
       h1 {
@@ -70,6 +70,13 @@
         border-radius: 10px;
         color: #003a75;
         background-color: rgba(240, 247, 255, 0.8);
+      }
+
+      /* sm => 640px */
+      @media (min-width: 640px) {
+        main {
+          padding: 100px 60px;
+        }
       }
 
       @media (prefers-color-scheme: dark) {
