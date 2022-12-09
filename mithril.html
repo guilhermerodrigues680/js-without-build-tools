@@ -5,12 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="https://unpkg.com/mithril@2.2.2/mithril.js" defer></script>
-    <script src="mithril.js" defer></script>
-
-    <title>mithril-no-build-tools</title>
+    <title>Mithril.js em ambiente não compilado</title>
   </head>
   <body>
     <div id="app"></div>
+
+    <!-- https://mithril.js.org/#getting-started -->
+    <script src="https://unpkg.com/mithril@2.2.2/mithril.js"></script>
+    <script>
+      // https://mithril.js.org/#getting-started
+
+      const root = document.querySelector("#app");
+
+      const Clock = () => {
+        let now = new Date();
+        let intId = null;
+
+        return {
+          oninit: (vnode) => {
+            intId = setInterval(() => {
+              now = new Date();
+              m.redraw();
+            }, 1000);
+          },
+
+          onremove: (vnode) => {
+            console.debug("Clock onremove", vnode);
+            if (intId != null) {
+              clearInterval(intId);
+            }
+          },
+
+          view: () => m("div", `Agora: ${now.toLocaleString()}`),
+        };
+      };
+
+      m.mount(root, {
+        view: () => [m("h1", "Hello " + "props.name"), m(Clock)],
+      });
+    </script>
   </body>
 </html>
