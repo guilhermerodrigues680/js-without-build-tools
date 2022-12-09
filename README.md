@@ -16,8 +16,6 @@ Esse repositório está hospedado no GitHub Pages, assim basta acessar os arquiv
 
 ## Desenvolvimento
 
-Basta clonar o projeto e abrir o arquivo no browser ou servir os arquivos usando um servidor.
+É possível executar todas as implementações apenas colocando o path completo do arquivo no browser.
 
-É possível executas as implementações que não usam _ECMAScript Modules (ESM)_ colocando apenas o path completo do arquivo no browser.
-
-Já as aplicações que usam _ESM_ necessitam de um servidor web como nginx, python http.server, extensão Live Server do vscode, etc. [JavaScript modules - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+As aplicações que usam _ECMAScript Modules (ESM)_ podem necessitar de um servidor web como nginx, python http.server, etc, se forem usados modulos locais: [JavaScript modules | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
