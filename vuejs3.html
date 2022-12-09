@@ -5,22 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- <script
-      src="https://unpkg.com/vue@3.2.41/dist/vue.global.js"
-      defer
-    ></script> -->
-    <script
-      src="https://unpkg.com/vue@3.2.41/dist/vue.global.prod.js"
-      defer
-    ></script>
-    <script src="vuejs3.js" defer></script>
+    <!-- https://vuejs.org/guide/quick-start.html#using-vue-from-cdn -->
+    <!-- <script src="https://unpkg.com/vue@3.2.41/dist/vue.global.js"></script> -->
+    <script src="https://unpkg.com/vue@3.2.41/dist/vue.global.prod.js"></script>
 
-    <title>Document</title>
+    <title>Vue.js 3 em ambiente não compilado</title>
   </head>
   <body>
     <div id="app">
       <h1>{{ message }}</h1>
       <div>Agora: {{ now }}</div>
     </div>
+
+    <script>
+      // https://vuejs.org/guide/quick-start.html#using-vue-from-cdn
+
+      const app = Vue.createApp({
+        data: () => ({
+          message: "Hello Vue!",
+          dateNow: new Date(),
+          timerInterval: null,
+        }),
+
+        created() {
+          this.timerInterval = setInterval(
+            () => (this.dateNow = new Date()),
+            1000
+          );
+        },
+
+        beforeUnmount() {
+          clearInterval(this.timerInterval);
+        },
+
+        computed: {
+          now() {
+            return this.dateNow.toLocaleString();
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
   </body>
 </html>
