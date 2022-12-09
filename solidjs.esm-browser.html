@@ -1,15 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script type="module" src="solidjs.esm-browser.js" defer></script>
-
-    <title>Document</title>
-</head>
-<body>
+    <title>Solid.js em ambiente não compilado</title>
+  </head>
+  <body>
     <div id="app"></div>
-</body>
+
+    <script type="module">
+      // https://www.solidjs.com/guides/getting-started#buildless-options
+
+      import {
+        createSignal,
+        onCleanup,
+      } from "https://cdn.skypack.dev/solid-js@1.6.4";
+      import { render } from "https://cdn.skypack.dev/solid-js@1.6.4/web";
+      import html from "https://cdn.skypack.dev/solid-js@1.6.4/html";
+
+      const Clock = () => {
+        const [now, setNow] = createSignal(new Date());
+        const intId = setInterval(() => setNow(new Date()), 1000);
+
+        onCleanup(() => clearInterval(intId));
+
+        return html`<div>Agora: ${() => now().toLocaleString()}</div>`;
+      };
+
+      const PropsDemo = (props) => {
+        return html`<h1>${props.children} ${props.name}!</h1>`;
+      };
+
+      function App() {
+        return html`
+          <>
+            <${PropsDemo} name="World">Hello</PropsDemo>
+            <${Clock} />
+          </>
+        `;
+      }
+
+      render(App, document.getElementById("app"));
+    </script>
+  </body>
 </html>
