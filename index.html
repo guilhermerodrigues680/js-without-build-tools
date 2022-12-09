@@ -4,26 +4,152 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>No Build tools</title>
+    <title>JavaScript sem build tools</title>
+
+    <style>
+      :root {
+        font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+        line-height: 1.5;
+
+        color-scheme: light dark;
+        color: rgb(26, 32, 39);
+
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      html {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      main {
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 100px 60px;
+      }
+
+      h1 {
+        font-size: 2.25rem;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: normal;
+        margin: 40px 0 4px 0;
+      }
+
+      p,
+      ul {
+        margin: 0 0 16px 0;
+      }
+
+      a {
+        color: #0072e5;
+        text-decoration-color: rgba(0, 127, 255, 0.4);
+      }
+
+      .callout {
+        padding: 16px;
+        margin: 16px 0;
+        border: 1px solid #c2e0ff;
+        border-radius: 10px;
+        color: #003a75;
+        background-color: rgba(240, 247, 255, 0.8);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          color: #b2bac2;
+          background-color: #001e3c;
+        }
+
+        h1,
+        h3 {
+          color: #fff;
+        }
+
+        a {
+          color: #66b2ff;
+        }
+
+        .callout {
+          color: #f0f7ff;
+          background-color: rgba(0, 58, 117, 0.2);
+          border-color: #004c99;
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <div>
-      <strong>
-        O links funcionam somente abrindo o arquivo no browser, exceto os links
-        ECMAScript Modules (ESM) que precisam de um servidor.
-      </strong>
-    </div>
+    <main>
+      <h1>JavaScript sem build tools</h1>
 
-    <ul>
-      <li><a href="preact.html">Preact</a></li>
-      <li><a href="react.html">React</a></li>
-      <li><a href="vuejs3.html">Vue.js 3</a></li>
-      <li><a href="alpinejs.html">Alpine.js</a></li>
-      <li><a href="lit.esm-browser.html">Lit (ES Modules)</a></li>
-      <li><a href="solidjs.esm-browser.html">SolidJS (ES Modules)</a></li>
-    </ul>
+      <p>
+        Foi implementado uma aplicação simples de relógio usando diferentes
+        frameworks para ser possível comparar a complexidade de implementação em
+        cada um e o tamanho do download que o browser deve fazer para executar
+        cada um.
+      </p>
 
-    <!-- TODO: With Build tools. -->
+      <p>
+        Mais informações no README no repositório do projeto:
+        <a
+          href="https://github.com/guilhermerodrigues680/js-without-build-tools"
+        >
+          guilhermerodrigues680/js-without-build-tools
+        </a>
+      </p>
+
+      <section>
+        <h3>Implementações que <u>não usam</u> ECMAScript Modules</h3>
+        <ul>
+          <li><a href="alpinejs.html">Alpine.js</a></li>
+          <li><a href="mithril.html">Mithril.js</a></li>
+          <li><a href="petite-vue.html">Petite-Vue</a></li>
+          <li><a href="preact.html">Preact</a></li>
+          <li><a href="react.html">React</a></li>
+          <li><a href="vuejs3.html">Vue.js 3</a></li>
+        </ul>
+
+        <h3>Implementações que <u>usam</u> ECMAScript Modules</h3>
+        <ul>
+          <li><a href="lit.esm-browser.html">Lit (ES Modules)</a></li>
+          <li><a href="solidjs.esm-browser.html">SolidJS (ES Modules)</a></li>
+        </ul>
+
+        <div class="callout">
+          <p>
+            É possível executas as implementações que não usam
+            <em>ECMAScript Modules (ESM)</em> colocando apenas o path completo
+            do arquivo no browser.
+            <br />
+            Já as aplicações que usam <em>ESM</em> necessitam de um servidor web
+            como nginx, python http.server, etc.
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+              target="_blank"
+            >
+              JavaScript modules - JavaScript | MDN
+            </a>
+          </p>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
